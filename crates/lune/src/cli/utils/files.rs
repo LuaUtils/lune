@@ -6,25 +6,8 @@ use std::{
 use anyhow::{anyhow, bail, Result};
 use console::style;
 use directories::UserDirs;
-use once_cell::sync::Lazy;
 
 const LUNE_COMMENT_PREFIX: &str = "-->";
-
-static ERR_MESSAGE_HELP_NOTE: Lazy<String> = Lazy::new(|| {
-    format!(
-        "To run this file, either:\n{}\n{}",
-        format_args!(
-            "{} rename it to use a {} or {} extension",
-            style("-").dim(),
-            style(".luau").blue(),
-            style(".lua").blue()
-        ),
-        format_args!(
-            "{} pass it as an absolute path instead of relative",
-            style("-").dim()
-        ),
-    )
-});
 
 /**
     Discovers a script file path based on a given script name.
@@ -69,25 +52,7 @@ pub fn discover_script_path(path: impl AsRef<str>, in_home_dir: bool) -> Result<
     let is_abs = file_path.is_absolute();
     let ext = file_path.extension();
     if is_file {
-        if is_abs {
-            Ok(file_path)
-        } else if let Some(ext) = file_path.extension() {
-            match ext {
-                e if e == "lua" || e == "luau" => Ok(file_path),
-                _ => Err(anyhow!(
-                    "A file was found at {} but it uses the '{}' file extension\n{}",
-                    style(file_path.display()).green(),
-                    style(ext.to_string_lossy()).blue(),
-                    *ERR_MESSAGE_HELP_NOTE
-                )),
-            }
-        } else {
-            Err(anyhow!(
-                "A file was found at {} but it has no file extension\n{}",
-                style(file_path.display()).green(),
-                *ERR_MESSAGE_HELP_NOTE
-            ))
-        }
+        Ok(file_path)
     } else if is_dir {
         match (
             discover_script_path(format!("{path}/init.luau"), in_home_dir),
