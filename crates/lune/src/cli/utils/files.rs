@@ -14,13 +14,8 @@ const LUNE_COMMENT_PREFIX: &str = "-->";
 
     Script discovery is done in several steps here for the best possible user experience:
 
-    1. If we got a file that definitely exists, make sure it is either
-        - using an absolute path
-        - has the lua or luau extension
+    1. If we got a file, run it
     2. If we got a directory, check if it has an `init` file to use, and if it doesn't, let the user know
-    3. If we got an absolute path, don't check any extensions, just let the user know it didn't exist
-    4. If we got a relative path with no extension, also look for a file with a lua or luau extension
-    5. No other options left, the file simply did not exist
 
     This behavior ensures that users can do pretty much whatever they want if they pass in an absolute
     path, and that they then have control over script discovery behavior, whereas if they pass in
