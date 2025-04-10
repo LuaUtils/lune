@@ -17,7 +17,6 @@ pub enum LuneStandardLibrary {
     #[cfg(feature = "regex")]    Regex,
     #[cfg(feature = "serde")]    Serde,
     #[cfg(feature = "stdio")]    Stdio,
-    #[cfg(feature = "roblox")]   Roblox,
 }
 
 impl LuneStandardLibrary {
@@ -35,7 +34,6 @@ impl LuneStandardLibrary {
         #[cfg(feature = "regex")]    Self::Regex,
         #[cfg(feature = "serde")]    Self::Serde,
         #[cfg(feature = "stdio")]    Self::Stdio,
-        #[cfg(feature = "roblox")]   Self::Roblox,
     ];
 
     /**
@@ -55,7 +53,6 @@ impl LuneStandardLibrary {
             #[cfg(feature = "regex")]    Self::Regex    => "regex",
             #[cfg(feature = "serde")]    Self::Serde    => "serde",
             #[cfg(feature = "stdio")]    Self::Stdio    => "stdio",
-            #[cfg(feature = "roblox")]   Self::Roblox   => "roblox",
 
             _ => unreachable!("no standard library enabled"),
         }
@@ -81,7 +78,6 @@ impl LuneStandardLibrary {
             #[cfg(feature = "regex")]    Self::Regex    => lune_std_regex::module(lua),
             #[cfg(feature = "serde")]    Self::Serde    => lune_std_serde::module(lua),
             #[cfg(feature = "stdio")]    Self::Stdio    => lune_std_stdio::module(lua),
-            #[cfg(feature = "roblox")]   Self::Roblox   => lune_std_roblox::module(lua),
 
             _ => unreachable!("no standard library enabled"),
         };
@@ -110,7 +106,6 @@ impl FromStr for LuneStandardLibrary {
             #[cfg(feature = "regex")]    "regex"    => Self::Regex,
             #[cfg(feature = "serde")]    "serde"    => Self::Serde,
             #[cfg(feature = "stdio")]    "stdio"    => Self::Stdio,
-            #[cfg(feature = "roblox")]   "roblox"   => Self::Roblox,
 
             _ => {
                 return Err(format!(
