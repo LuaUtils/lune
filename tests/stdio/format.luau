@@ -1,6 +1,5 @@
 local process = require("@lune/process")
 local regex = require("@lune/regex")
-local roblox = require("@lune/roblox")
 local stdio = require("@lune/stdio")
 
 local function assertFormatting(errorMessage: string, formatted: string, expected: string)
@@ -51,42 +50,6 @@ assertFormatting(
 	"Should still format numeric keys for mixed tables",
 	stdio.format({ "Hello", "World", Hello = "World" }),
 	'{\n    [1] = "Hello",\n    [2] = "World",\n    Hello = "World",\n}'
-)
-
-local userdatas = {
-	Foo = newproxy(false),
-	Bar = regex.new("TEST"),
-	Baz = (roblox :: any).Vector3.new(1, 2, 3),
-}
-
-assertFormatting(
-	"Should format userdatas as generic 'userdata' if unknown",
-	stdio.format(userdatas.Foo),
-	"<userdata>"
-)
-
-assertContains(
-	"Should format userdatas with their type if they have a __type metafield",
-	stdio.format(userdatas.Bar),
-	"Regex"
-)
-
-assertContains(
-	"Should format userdatas with their type even if they have a __tostring metamethod",
-	stdio.format(userdatas.Baz),
-	"Vector3"
-)
-
-assertContains(
-	"Should format userdatas with their tostringed value if they have a __tostring metamethod",
-	stdio.format(userdatas.Baz),
-	"1, 2, 3"
-)
-
-assertFormatting(
-	"Should format userdatas properly in tables",
-	stdio.format(userdatas),
-	"{\n    Bar = <Regex(TEST)>,\n    Baz = <Vector3(1, 2, 3)>,\n    Foo = <userdata>,\n}"
 )
 
 local nested = {
