@@ -1,28 +1,9 @@
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD041 -->
 
-<img align="right" width="250" src="assets/logo/tilt_svg.svg" alt="Lune logo" />
-
-<h1 align="center">Lune</h1>
-
-<div align="center">
-	<div>
-		<a href="https://crates.io/crates/lune">
-			<img src="https://img.shields.io/crates/v/lune.svg?label=Version" alt="Current Lune library version" />
-		</a>
-		<a href="https://github.com/lune-org/lune/actions">
-			<img src="https://shields.io/endpoint?url=https://badges.readysetplay.io/workflow/lune-org/lune/ci.yaml" alt="CI status" />
-		</a>
-		<a href="https://github.com/lune-org/lune/actions">
-			<img src="https://shields.io/endpoint?url=https://badges.readysetplay.io/workflow/lune-org/lune/release.yaml" alt="Release status" />
-		</a>
-		<a href="https://github.com/lune-org/lune/blob/main/LICENSE.txt">
-			<img src="https://img.shields.io/github/license/lune-org/lune.svg?label=License&color=informational" alt="Lune license" />
-		</a>
-	</div>
-</div>
-
-<br/>
+SLURP: Silly Lua Interpreter
+Fork of Lune designed to be used for linux utilities & programs.
+rewriting readme is todo
 
 A standalone [Luau](https://luau-lang.org) runtime.
 
